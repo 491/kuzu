@@ -13,7 +13,7 @@ public class DataBaseConnect {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://kuzu.ku.edu.tr:3306/kuzu?useUnicode=true&amp;characterEncoding=UTF-8";
-			conn = DriverManager.getConnection(url, "kuzu", "pH8g287e");
+			conn = DriverManager.getConnection(url, "", "");
 			System.out.println("conn built");
 		} catch (SQLException e) {
 			e.printStackTrace();
