@@ -222,7 +222,7 @@ $query = "SELECT count(*) FROM search2 WHERE ";
 			$query .= "AND keywords LIKE '%$each%' ";
 	}
 	
-	$li = mysqli_connect("localhost","kuzu","pH8g287e","kuzu");
+	$li = mysqli_connect("localhost","","","");
 	mysqli_set_charset($li, "utf8");	
 $query = mysqli_query($li, $query);
 $row = mysqli_fetch_row($query);
