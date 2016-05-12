@@ -192,7 +192,7 @@ b2 {
 <body>
 <table border="0">
   <tr>
-     <td><img src="kuzu.jpg" width="150" height="95" alt="kuzuk"></td>
+     <td><a href="http://kuzu.ku.edu.tr"><img src="kuzu.jpg" width="150" height="95" alt="kuzuk"></td>
      <td><img src="yaz42.png" width="320" height="32" alt="yaz">
 <form action="./search.php" method="get" class="form-wrapper cf" id="keyword">
  <input type='text'  name='keyword' value= '<?php echo $_GET ['keyword']; ?>'  />
@@ -210,9 +210,10 @@ b2 {
 <?php
 
 $keyword = $_GET['keyword'];
+
 $terms = explode(" " , $keyword);
 
-$query = "SELECT count(*) FROM search2 WHERE ";
+$query = "SELECT count(*) FROM search3 WHERE ";
 	$i = 0;
 	foreach ($terms as $each) {
 		$i++;
@@ -222,14 +223,14 @@ $query = "SELECT count(*) FROM search2 WHERE ";
 			$query .= "AND keywords LIKE '%$each%' ";
 	}
 	
-	$li = mysqli_connect("localhost","","","");
+	$li = mysqli_connect("localhost","kuzu","pH8g287e","kuzu");
 	mysqli_set_charset($li, "utf8");	
 $query = mysqli_query($li, $query);
 $row = mysqli_fetch_row($query);
 // Here we have the total row count
 $numrows = $row[0];
 
-
+if($numrows !=0){
 	$page_rows = 10;
 	$last = ceil($numrows/$page_rows);
 	if($last<1)
@@ -249,7 +250,7 @@ $numrows = $row[0];
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 	
 	
-	$query = "SELECT * FROM search2 WHERE ";
+	$query = "SELECT * FROM search3 WHERE ";
 
 
 	$i = 0;
@@ -316,7 +317,10 @@ while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
 // 	 Testimonial</a> - Click the link to view this testimonial<br>Written </p>';
 }
 
-
+}else{
+echo "No results found for \"<b>$keyword</b>\" </br>";
+echo "<center><img src=\"noresult.png\" width=\"320\" height=\"320\" alt=\"nores\"></center>";
+}
 
 mysqli_close($li);
 
